@@ -186,3 +186,12 @@ while True:
                 "Are there any other element you want to calculate the mass base on the subatomic particle? ").lower()
             if more in negative:
                 break
+
+
+# print("""---CALCULATE BINDING ENERGY---
+        # 1. Enter the isotope you want to calculate the bonding energy.
+        # 2. Find the average atomic mass
+       #  3. Calculate the Δ mass ( Δmass = average atomic mass (calculated) - atomic mass)
+        # 4. Convert the mass in amu to kg (Δmass amu * (1.6605*(10^-27)kg/1amu) )
+        # 5. Calculate the binding energy (in Joules (J)) (E=mc^2)
+        # """)
