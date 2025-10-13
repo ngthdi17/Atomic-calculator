@@ -22,7 +22,7 @@ while True:
           )
     print()
     print("-- PLEASE ALWAYS READ THE INSTRUCTION CAREFULLY!-- ")
-    option = str(input("What do you want to do? "))
+    option = str(input("What do you want to do? ")).lower()
     # 1.
     if option in ['1', 'one']:
         print("""---CALCULATING AVERAGE ATOMIC MASS---
@@ -186,12 +186,101 @@ while True:
                 "Are there any other element you want to calculate the mass base on the subatomic particle? ").lower()
             if more in negative:
                 break
+    # 3.
+    if option in ['3', 'three']:
+        print(f"""  ---CALCULATE THE BINDING ENERGY (REQUIRE 2)
+              1. Calculating the Δ mass ( Δmass = subatomic particle mass - atomic mass)
+              1a. Calculate the subatomic particle mass (or type in)
+              1b. Enter the isotope's atomic mass
+              1c. Calculate the Δ mass in amu
+              2. Convert the Δ mass in amu into kilograms (Δmass amu * (1.6605*(10^-27)kg/1amu) )
+              3. Calculate the binding energy (in Joules (J)) (E=mc^2))""")
+        print()
+        while True:
+            isotopes = input("Enter an element symbol? ")
+            if not isotopes:
+                print("You didn't enter an element symbol yet")
+                continue
+            labeled = isotopes[0].upper() + isotopes[1:].lower()
+            mass_number = int(
+                input(f"What is isotope of {labeled} do you want to calculate the mass? "))
+            lb2 = f"{labeled}-{mass_number}"
+            print()
+            print(f"1a. Calculating the subatomic partical of {lb2}")
+            ask = input(
+                f'Do you want to calculate the subatomic particle of {lb2} or type in? (calculate - "1"/type - "2")').lower()
+            if ask in [positive, 'calculate', '1']:
+                # Calculate
+                print()
+                print(f"CALCULATING {lb2} MASS:")
+                p = int(input(
+                    f"2. Look at the periodic table, what is the atomic number of {lb2}? (protons) "))
+                e = p
+                while True:
+                    confirm = input(
+                        f'Confirming {lb2} have {p} protons? (yes/no) ').lower()
+                    if confirm in positive:
+                        break
+                print()
+                print(f'{lb2} has {p} protons and {e} electrons without any charges')
+                n = mass_number - p
+                print(f'3. {lb2} has {n} neutrons. ')
+                print()
+                charge = int(input(f"4. What is the charge of {lb2}? "))
+                lb_charge = ''
+                ewc = 0
+                if charge == 0:
+                    lb_charge = '0'
+                    ewc = 0
+                elif charge > 0:
+                    lb_charge = f"+{charge}"
+                    ewc = e - charge
+                else:
+                    lb_charge = f"{charge}"
+                    ewc = e - charge
+                iwc = f"{lb2} ({lb_charge})"
+                print(f"""5. For {lb2} (0), there are {e} electrons
+                    For {iwc}, there are {ewc} electrons""")
+                print()
+                print(f"""6. In theory:
+                m_e = {formatted_mea} amu = {formatted_mek} kg
+                m_p = {mass_proton_amu} amu = {formatted_mpk} kg
+                m_n = {mass_neutron_amu} amu = {formatted_mnk} kg """)
+                # electrons
+                m_e_amu = ewc * mass_electron_amu
+                m_e_kg = ewc * mass_electron_kg
+                # protons
+                m_p_amu = p * mass_proton_amu
+                m_p_kg = p * mass_proton_kg
+                # neutrons
+                m_n_amu = n * mass_neutron_amu
+                m_n_kg = n * mass_neutron_kg
+                print()
+                m_amu = m_e_amu + m_p_amu + m_n_amu
+                sci_m_amu = f"{m_amu:.2e}"  # '1.23e+05'
+                base_m_amu, exp_m_amu = sci_m_amu.split("e")  # ['1.23', '+05']
+                exp_m_amu = int(exp_m_amu)  # convert '+05' → 5
+                formatted_m_amu = f"{base_m_amu} x 10^{exp_m_amu}"
+                print(f"The mass of {iwc} in amu is: {formatted_m_amu} amu ")
+                m_kg = m_e_kg + m_p_kg + m_n_kg
+                sci_m_kg = f"{m_kg:.2e}"  # '1.23e+05'
+                base_m_kg, exp_m_kg = sci_m_kg.split("e")  # ['1.23', '+05']
+                exp_m_kg = int(exp_m_kg)  # convert '+05' → 5
+                formatted_m_kg = f"{base_m_kg} x 10^{exp_m_kg}"
+                print(
+                    f"The mass of {iwc} in subatomic particles is {formatted_m_amu} amu ")
+                print(f"or m_{iwc} kg = {formatted_m_kg} kg ")
+            elif ask in [negative, 'type', '2']:
+                print()
+                sub_mass_type = float(
+                    input(f"What is the subatomic particle mass of {lb2}? "))
+                while True:
+                    ask_type = input(
+                        f"Is {sub_mass_type} the mass of {lb2} in amu or in kg? (amu/kg)").lower()
+                    if not ask_type:
+                        print('Please answer the question. ')
+                        continue
+                    if ask_type in ['amu']:
 
-
-# print("""---CALCULATE BINDING ENERGY---
-        # 1. Enter the isotope you want to calculate the bonding energy.
-        # 2. Find the average atomic mass
-       #  3. Calculate the Δ mass ( Δmass = average atomic mass (calculated) - atomic mass)
-        # 4. Convert the mass in amu to kg (Δmass amu * (1.6605*(10^-27)kg/1amu) )
-        # 5. Calculate the binding energy (in Joules (J)) (E=mc^2)
-        # """)
+                    if ask_type in ['kg']:
+                        #

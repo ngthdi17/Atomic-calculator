@@ -13,7 +13,7 @@
 
 # 1. If we work on a new feature or bug fix -> create a new branch
 # git checkout -b (name)
-# -> git checkout -b feature-refactor ->name is feature-refractor
+# -> git checkout -b feature-refactor ->name is feature-refractors
 # 2. make changes
 # git add .
 # git commit -m "change what"
