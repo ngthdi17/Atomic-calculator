@@ -1,6 +1,6 @@
 mass_proton_amu = 1.00727
 mass_neutron_amu = 1.00867
-mass_electron_amu = 5.485*(10**-4)1
+mass_electron_amu = 5.485*(10**-4)
 formatted_mea = f"5.485*(10^-4)"
 mass_electron_kg = 9.11*(10**-31)
 formatted_mek = f"9.11*(10^-31) "
@@ -203,7 +203,7 @@ while True:
                 continue
             labeled = isotopes[0].upper() + isotopes[1:].lower()
             mass_number = int(
-                input(f"What is isotope of {labeled} do you want to calculate the mass? "))
+                input(f"What is isotope of {labeled} do you want to calculate the binding energy? "))
             lb2 = f"{labeled}-{mass_number}"
             print()
             print(f"1a. Calculating the subatomic partical of {lb2}")
@@ -270,19 +270,65 @@ while True:
                 print(
                     f"The mass of {iwc} in subatomic particles is {formatted_m_amu} amu ")
                 print(f"or m_{iwc} kg = {formatted_m_kg} kg ")
+                print()
+                question = [f" What is {lb2}'s atomic mass in amu  "]
+                answers = []
+                i = 0
+                while i < len(question):
+                    answer = float(input(question[i]))
+                    confirm = input(f"Confirm {answer}? (yes/no)  ").lower()
+                    if confirm in positive:
+                        answers.append(answer)
+                        i = i + 1
+                    elif confirm in negative:
+                        continue  # Don't change i, so it repeat the question again!
+                    else:
+                        continue  # If they type something else=> no
+                mass_amu = answers[0]
+                mass_kg = mass_amu*(1.6605*(10**-27))
+                delta_mass_kg = m_kg - mass_kg
+                sci_delta_mass_kg = f"{delta_mass_kg:.2e}"
+                base_delta_mass_kg, exp_delta_mass_kg = sci_delta_mass_kg.split(
+                    "e")
+                exp_delta_mass_kg = int(exp_delta_mass_kg)
+                formatted_delta_mass_kg = f"{base_delta_mass_kg} x 10^{exp_delta_mass_kg}"
+                print(
+                    f'2.The mass of {iwc} in kg is: {formatted_delta_mass_kg} kg')
+                print()
+                print(f'3. Calculating the binding energy of {iwc} '
+                      )
+                e = delta_mass_kg*(c**2)
+                sci_e = f"{e:.2e}"
+                base_e, exp_e = sci_e.split("e")
+                exp_e = int(exp_e)
+                formatted_e = f"{base_e} x 10^{exp_e}"
+                print()
+                print(f"The binding energy of {lb2} is {formatted_e} J ")
+
             elif ask in [negative, 'type', '2']:
                 print()
+                question = [f"What is the subatomic particle mass of {lb2}? in amu? ",
+                            f"What is {lb2}'s atomic mass: "]
+                answers = []
+                i = 0
+                while i < len(question):
+                    answer = float(input(question[i]))
+                    confirm = input(f"Confirm {answer}? (yes/no) ").lower()
+                    if confirm in positive:
+                        answers.append(answer)
+                        i = i + 1
+                    elif confirm in negative:
+                        continue  # Don't change i, so it repeat the question again!
+                    else:
+                        continue  # If they type something else=> no
 
-                questions = []
-                sub_mass_type = float(
-                    input(f"What is the subatomic particle mass of {lb2}? in amu"))
-                print()
-                atomic_mass = float(
-                    input(f"Look at the periodic table and enter {lb2}'s atomic mass: "))
-                delta_mass_amu = sub_mass_type - atomic_mass
+                # answers = [sub_mass_amu ,atomic_mass]
+
+                delta_mass_amu = answers[0]-answers[1]
                 print(f"The Δ mass of {lb2} in amu is {delta_mass_amu} ")
                 print()
-                print(f"Converting Δ mass = {delta_mass_amu} to Δ mass = kg ")
+                print(
+                    f"2. Converting Δ mass = {delta_mass_amu} amu to Δ mass = kg ")
                 delta_mass_kg = delta_mass_amu * (1.6605*(10**-27))
                 sci_delta_mass_kg = f"{delta_mass_kg:.2e}"
                 base_delta_mass_kg, exp_delta_mass_kg = sci_delta_mass_kg.split(
@@ -291,3 +337,16 @@ while True:
                 formatted_delta_mass_kg = f"{base_delta_mass_kg} x 10^{exp_delta_mass_kg}"
                 print(
                     f"The Δ mass of {lb2} in kg is {formatted_delta_mass_kg}")
+                print()
+                print(f'3. Calculating the binding energy of {lb2} ')
+                e = delta_mass_kg*(c**2)
+                sci_e = f"{e:.2e}"
+                base_e, exp_e = sci_e.split("e")
+                exp_e = int(exp_e)
+                formatted_e = f"{base_e} x 10^{exp_e}"
+                print()
+                print(f"The binding energy of {lb2} is {formatted_e} J ")
+            more = input(
+                "Are there any other element you want to calculate the mass base on the subatomic particle? ").lower()
+            if more in negative:
+                break
