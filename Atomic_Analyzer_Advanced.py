@@ -1,6 +1,6 @@
 mass_proton_amu = 1.00727
 mass_neutron_amu = 1.00867
-mass_electron_amu = 5.485*(10**-4)
+mass_electron_amu = 5.485*(10**-4)1
 formatted_mea = f"5.485*(10^-4)"
 mass_electron_kg = 9.11*(10**-31)
 formatted_mek = f"9.11*(10^-31) "
@@ -272,15 +272,22 @@ while True:
                 print(f"or m_{iwc} kg = {formatted_m_kg} kg ")
             elif ask in [negative, 'type', '2']:
                 print()
-                sub_mass_type = float(
-                    input(f"What is the subatomic particle mass of {lb2}? "))
-                while True:
-                    ask_type = input(
-                        f"Is {sub_mass_type} the mass of {lb2} in amu or in kg? (amu/kg)").lower()
-                    if not ask_type:
-                        print('Please answer the question. ')
-                        continue
-                    if ask_type in ['amu']:
 
-                    if ask_type in ['kg']:
-                        #
+                questions = []
+                sub_mass_type = float(
+                    input(f"What is the subatomic particle mass of {lb2}? in amu"))
+                print()
+                atomic_mass = float(
+                    input(f"Look at the periodic table and enter {lb2}'s atomic mass: "))
+                delta_mass_amu = sub_mass_type - atomic_mass
+                print(f"The Δ mass of {lb2} in amu is {delta_mass_amu} ")
+                print()
+                print(f"Converting Δ mass = {delta_mass_amu} to Δ mass = kg ")
+                delta_mass_kg = delta_mass_amu * (1.6605*(10**-27))
+                sci_delta_mass_kg = f"{delta_mass_kg:.2e}"
+                base_delta_mass_kg, exp_delta_mass_kg = sci_delta_mass_kg.split(
+                    "e")
+                exp_delta_mass_kg = int(exp_delta_mass_kg)
+                formatted_delta_mass_kg = f"{base_delta_mass_kg} x 10^{exp_delta_mass_kg}"
+                print(
+                    f"The Δ mass of {lb2} in kg is {formatted_delta_mass_kg}")
