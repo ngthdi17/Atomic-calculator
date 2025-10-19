@@ -247,10 +247,17 @@ Built to learn, understand, and calculate scientifically.
 
 ---
 
-✅ **Next Step:**  
-After pasting this into your GitHub README.md box, click  
-➡ **“Commit changes…” → “Commit directly to the main branch.” → “Commit”**  
 
-Then refresh your GitHub repo homepage — your README will appear formatted with tables, headers, and equations.  
+How to run:
+git clone https://github.com/ngthdi17/Atomic-calculator
+cd Atomic-calculator
+python Atomic_Analyzer_Advanced.py
 
-Would you like me to upgrade it with **badges (Python version, license, repo size)** and **GitHub-style visuals (logos, emoji headers)** next? It’ll make it look like a top-tier open-source project.
+What I’m Looking For?
+Is my file structure clean?
+
+Any optimization suggestions for performance?
+
+How can I make this tool more user-friendly?
+
+Thanks for helping me!
