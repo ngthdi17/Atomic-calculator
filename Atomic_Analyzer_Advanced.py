@@ -1,6 +1,6 @@
-mass_proton_amu = 1.00727
-mass_neutron_amu = 1.00867
-mass_electron_amu = 5.485*(10**-4)
+mass_proton_amu = 1.007276
+mass_neutron_amu = 1.008665
+mass_electron_amu = 5.4878*(10**-4)
 formatted_mea = f"5.485*(10^-4)"
 mass_electron_kg = 9.11*(10**-31)
 formatted_mek = f"9.11*(10^-31) "
